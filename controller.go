@@ -187,7 +187,7 @@ func endpointsCheck(kubeClient *client.Client, ingList *extensions.IngressList,
       namespace := ingress.Namespace
       for _, path := range rule.HTTP.Paths {
         serviceName := path.Backend.ServiceName
-        servicePort := path.Backend.ServicePort.IntValue()
+        //servicePort := path.Backend.ServicePort.IntValue()
 
         // Find endpoints
         endpoints, err := kubeClient.Endpoints(api.NamespaceDefault).Get(serviceName)
