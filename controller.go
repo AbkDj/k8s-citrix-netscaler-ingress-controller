@@ -23,6 +23,7 @@ import (
   "strconv"
   "fmt"
   "strings"
+  "os"
 
   "github.com/chiradeep/contrib/ingress/controllers/citrix-netscaler/netscaler"
   "k8s.io/kubernetes/pkg/api"
@@ -316,9 +317,13 @@ func loop(kubeClient *client.Client) {
 }
 
 func main() {
+  kube_apiserver_addr := os.Getenv("KUBERNETES_APISERVER_ADDR")
+  kube_apiserver_port := os.Getenv("KUBERNETES_APISERVER_PORT")
+  kube_apiserver_host := fmt.Sprintf("http://%s:%s", kube_apiserver_addr, kube_apiserver_port)
   config := restclient.Config{
     //Host:     "https://127.0.0.1:6443",
-    Host:     "http://10.217.129.67:8080",
+    //Host:     "http://10.217.129.67:8080",
+    Host:     kube_apiserver_host,
     Insecure: true,
   }
   kubeClient, err := client.New(&config)
