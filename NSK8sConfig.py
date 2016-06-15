@@ -154,7 +154,7 @@ class NSK8sConfig :
       # Login to Netscaler
       ns_session = NSK8sConfig().NSlogin(config.nsip, config.username, config.password)
 
-      # Create an instance of the virtual server class
+      # Create an instance of the vxlan
       new_vxlan_obj = vxlan()
 
       # Create a new vxlan
